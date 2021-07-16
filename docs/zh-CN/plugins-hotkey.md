@@ -8,7 +8,7 @@
 - 功能按键请采用驼峰方式书写，例如ctrl，leftArrow;
 
 ```js
-import * as HotKeyPlugin from 'butterfly-dag/plugins/hotkey/dist/index.unpkg.js';';
+import * as HotKeyPlugin from 'butterfly-dag/plugins/hotkey/dist/index.unpkg.js';
 
 let canvasInstance = new Canvas({...});
 
