@@ -1,4 +1,5 @@
 import { transformCode } from './codemap';
+// import $ from jQuery;
 class HotKeyPlugins {
   constructor() {
     this.addCanvas = {};
@@ -22,6 +23,9 @@ class HotKeyPlugins {
     }
     this.canvas = obj.canvas;
     this.hotkeyFromConfig = obj.config || [];
+    obj.root.setAttribute("tabindex",0);
+    obj.root.focus();
+    obj.root.style.outline = 'none';
     obj.root.addEventListener('keydown', this.handleKeydown);
     obj.canvas.on('events', this._updateSelectedItem);
   };
@@ -85,7 +89,6 @@ class HotKeyPlugins {
   };
 
   handleKeydown = (e) => {
-    e.preventDefault()
     const { target } = e;
     const { tagName } = target || {};
     const keyCode = e.keyCode || e.which || e.charCode;
@@ -129,13 +132,14 @@ class HotKeyPlugins {
       })
       const newKeyMapper = Object.assign({}, keyMapper, customerMapper)
       if(newKeyMapper[pressedKey]){
+        e.preventDefault();
         return newKeyMapper[pressedKey]();
       }
     }
   };
 
   hasKey = ( keyArray, keyname ) => {
-    return keyArray.indexOf( keyname ) >-1
+    return keyArray.indexOf( keyname ) > -1
   }
 
   onDelete = () => {
